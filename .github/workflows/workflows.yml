@@ -13,7 +13,13 @@ jobs:
        - name: Check out
          uses: actions/checkout@v3
         
-       
+              - name: install dependencies
+         run: | 
+          python -m venv tutorial-env
+          tutorial-env\Scripts\activate.bat
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -r requirements.txt
+
 
        - name: lint with flake8
          run: |
