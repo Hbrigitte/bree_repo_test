@@ -18,7 +18,7 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           python -m venv tutorial-env
           source tutorial-env/bin/activate
-          pip install -r requirements.txt
+          pip install -r /usr/local/lib/python3.9/site-packages requirements.txt
 
        - name: lint with flake8
          run: | 
