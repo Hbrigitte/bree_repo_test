@@ -26,7 +26,7 @@ jobs:
           flake8 my_first.py --count --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Run unit tests with nose
-        run: nosetests -v --with-spec --spec-color --with-coverage --cover-package=app
+        run: nosetests -v --with-spec --spec-color --with-coverage --cover-package=my_first.py
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
