@@ -40,15 +40,9 @@ jobs:
       - name: Login to Docker Hub
         uses: zemuldo/docker-build-push@master
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          args: $(secrets.DOCKERHUB_USERNAME) , $(secrets.DOCKERHUB_TOKEN)
+      
 
-      -
-        name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          tags: Hbrigitte/Bree:V1
 
 
 
