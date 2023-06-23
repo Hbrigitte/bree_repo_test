@@ -41,8 +41,8 @@ jobs:
         uses: zemuldo/docker-build-push@master
         with:
           args: $(secrets.DOCKERHUB_USERNAME) , $(secrets.DOCKERHUB_TOKEN)
-          image_name: "Bree"
-          image_tag: "V1"
+          image_name: "bree"
+          image_tag: "v1"
       
 
 
