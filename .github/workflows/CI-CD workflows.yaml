@@ -37,28 +37,15 @@ jobs:
        # uses: docker/setup-buildx-action@v2   dfchhj;jkhgcxhfdgfx
 
       
-      #- name: Login to Docker Hub
-         #uses: zemuldo/docker-build-push@master
-         #with:
-          # args: $(secrets.DOCKERHUB_USERNAME) , $(secrets.DOCKERHUB_TOKEN)
-           #image_name: "bree"
-           #run: |
-            #docker build -t hbrigitte/bree:latest .
-            #docker push hbrigitte/bree:latest
-
       - name: Login to Docker Hub
-        uses: docker/login-action@v1
+        uses: zemuldo/docker-build-push@master
         with:
-          username: $secrets.DOCKERHUB_USERNAME
-          password: $secrets.DOCKERHUB_PASSWORD
-
-      - name: Build and push Docker image
-        run: |
-          docker build -t hbrigitte/bree:latest .
-          docker push hbrigitte/bree:latest
+          args: $(secrets.DOCKERHUB_USERNAME) , $(secrets.DOCKERHUB_TOKEN)
+          image_name: "bree"
           
- 
-       
+      
+
+
 
 
 
