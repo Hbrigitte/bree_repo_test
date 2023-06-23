@@ -38,14 +38,15 @@ jobs:
 
       
       - name: Login to Docker Hub
-        uses: zemuldo/docker-build-push@master
+        uses: docker/login-action@v1
         with:
           args: $(secrets.DOCKERHUB_USERNAME) , $(secrets.DOCKERHUB_TOKEN)
           image_name: "bree"
           
-      
-
-
+      - name: Build and push Docker image
+        run: |
+          docker build -t hbrigitte/bree:latest .
+          docker push hbrigitte/bree:latest
 
 
 
