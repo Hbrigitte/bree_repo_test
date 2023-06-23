@@ -10,7 +10,6 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     container: python:3.9-slim
-    cmd: ["sh", "-c", "apt-get update && apt-get install -y docker.io"]
 
     steps:
       - name: Check out the repo
