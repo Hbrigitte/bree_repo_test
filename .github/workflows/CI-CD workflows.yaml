@@ -42,7 +42,7 @@ jobs:
         with:
           args: $(secrets.DOCKERHUB_USERNAME) , $(secrets.DOCKERHUB_TOKEN)
           image_name: "bree"
-          image_tag: "v1"
+          
       
 
 
