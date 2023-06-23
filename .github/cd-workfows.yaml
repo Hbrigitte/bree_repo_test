@@ -1,0 +1,16 @@
+name: CD workflow
+
+on:                 
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    container: python:3.9-slim
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3    
