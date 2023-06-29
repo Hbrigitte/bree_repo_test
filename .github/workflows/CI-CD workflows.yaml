@@ -40,9 +40,9 @@ jobs:
       - name: Login to Docker Hub
         uses: zemuldo/docker-build-push@master
         env:
-          DOCKER_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          REGISTRY_URL: "docker.io"
+         DOCKER_USERNAME: "hbrigitte"
+         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+         REGISTRY_URL: "docker.io"
         with:
           image_name: "bree"
           image_tag: latest
