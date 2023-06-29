@@ -39,12 +39,14 @@ jobs:
       
       - name: Login to Docker Hub
         uses: zemuldo/docker-build-push@master
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          REGISTRY_URL: "https://hub.docker.com/repository/docker/hbrigitte/bree/general"
         with:
-          args: $(secrets.DOCKERHUB_USERNAME) , $(secrets.DOCKERHUB_TOKEN)
           image_name: "bree"
           image_tag: latest
-          entrypoint: "https://hub.docker.com/repository/docker/hbrigitte/bree/general"
-          
+         
       
 
 
