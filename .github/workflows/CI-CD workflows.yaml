@@ -43,7 +43,7 @@ jobs:
           args: $(secrets.DOCKERHUB_USERNAME) , $(secrets.DOCKERHUB_TOKEN)
           image_name: "bree"
           image_tag: latest
-          REGISTRY_URL: "https://hub.docker.com/repository/docker/hbrigitte/bree/general"
+          entrypoint: "https://hub.docker.com/repository/docker/hbrigitte/bree/general"
           
       
 
