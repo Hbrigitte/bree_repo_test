@@ -40,17 +40,18 @@ jobs:
           image_name: "bree"
           image_tag: latest
 
-      - name: Instal IBM Cloud CLI
-        uses: IBM/actions-ibmcloud-cli@0.0.8
-        with:
-         APIKEY: ${{ secrets.IBM_CLOUD_API_KEY }}
-         CLOUD_REGION: ${{ secrets.IBM_CLOUD_REGION}} 
-         run: ibmcloud target -g ${{ secrets.IBM_CLOUD_RESOURCE }}
+      - name: Install IBM Cloud CLI
+        run: |
+          curl -sL https://ibm.biz/idt-installer | bash
+          ibmcloud plugin install kubernetes-service
+          ibmcloud ks cluster-config --cluster mycluster-free
+          export KUBECONFIG=/home/runner/.bluemix/plugins/container-service/clusters/mycluster-free/kube-config-francfort-mycluster-free.yml
+    
 
       - name: Log in to IBM Cloud
         run: |
          ibmcloud login --apikey ${{ secrets.IBM_CLOUD_API_KEY }} --no-region
-         ibmcloud target -g ${{ secrets.IBM_CLOUD_RESOURCE }} 
+         ibmcloud target -g default
 
       #- name: Set up IBM Cloud Kubernetes
         #uses: IBM/github-actions/setup-ibm-cloud-kubernetes@v1
