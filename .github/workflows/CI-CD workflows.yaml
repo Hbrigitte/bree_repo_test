@@ -29,15 +29,8 @@ jobs:
         run: |
          pip install nose
          nosetests -v --with-spec --spec-color --with-coverage --cover-package=service
-
-      #- name: Set up QEMU
-       # uses: docker/setup-qemu-action@v2
       
-      #- name: Set up Docker Buildx
-       # uses: docker/setup-buildx-action@v2   
-
-      
-      - name: Login to Docker Hub
+      - name: Login and build to Docker Hub
         uses: zemuldo/docker-build-push@master
         env:
          DOCKER_USERNAME: "hbrigitte"
@@ -46,14 +39,32 @@ jobs:
         with:
           image_name: "bree"
           image_tag: latest
-         
-      
 
+      - name: Set up IBM Cloud CLI
+        uses: IBM/github-actions/setup-ibm-cloud@v1
+        with:
+          ibm-cloud-api-key: ${{ secrets.IBM_CLOUD_API_KEY }}
+          ibm-cloud-endpoint: ${{ secrets.IBM_CLOUD_REGION }}
 
+      - name: Log in to IBM Cloud
+        run: |
+         ibmcloud login --apikey ${{ secrets.IBM_CLOUD_API_KEY }} --no-region
+         ibmcloud target -g ${{ secrets.IBM_CLOUD_RESOURCE }} 
 
+      - name: Set up IBM Cloud Kubernetes
+        uses: IBM/github-actions/setup-ibm-cloud-kubernetes@v1
 
+      - name: Retrieve Docker Hub image
+        run: docker pull bree:latest
 
+      - name: Build and push Docker image to IBM Cloud Container Registry
+        run: |
+        docker build -t your-ibm-registry-image:tag .
+        docker login -u ${{ secrets.IBM_CLOUD_CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.IBM_CLOUD_CONTAINER_REGISTRY_API_KEY }} mycluster.icr.io
+        docker tag your-ibm-registry-image:tag mycluster.icr.io/your-namespace/your-ibm-registry-image:tag
+        docker push mycluster.icr.io/your-namespace/your-ibm-registry-image:tag
 
-
-
-        
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
