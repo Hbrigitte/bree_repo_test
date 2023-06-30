@@ -40,13 +40,19 @@ jobs:
           image_name: "bree"
           image_tag: latest
 
-      - name: Install IBM Cloud CLI
-        run: |
-          curl -sL https://ibm.biz/idt-installer | bash
-          ibmcloud plugin install kubernetes-service
-          ibmcloud ks cluster-config --cluster mycluster-free
-          export KUBECONFIG=/home/runner/.bluemix/plugins/container-service/clusters/mycluster-free/kube-config-francfort-mycluster-free.yml
-    
+       
+          API_KEY: ${{ secrets.API_KEY }}
+          INSTALL_PLUGINS: code-engine,container-service
+          REGION: eu-de
+          RESOURCE_GROUP: solutions
+
+      - name: Instal IBM Cloud CLI
+        uses: dprosper/ic-setup-cli@v0.1.2
+        with:
+          API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+          INSTALL_PLUGINS: code-engine,container-service
+          REGION: eu-de
+          RESOURCE_GROUP: Default
 
       - name: Log in to IBM Cloud
         run: |
