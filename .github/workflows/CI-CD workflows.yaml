@@ -40,11 +40,7 @@ jobs:
           image_name: "bree"
           image_tag: latest
 
-       
-          API_KEY: ${{ secrets.API_KEY }}
-          INSTALL_PLUGINS: code-engine,container-service
-          REGION: eu-de
-          RESOURCE_GROUP: solutions
+      
 
       - name: Instal IBM Cloud CLI
         uses: dprosper/ic-setup-cli@v0.1.2
