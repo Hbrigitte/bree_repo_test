@@ -40,14 +40,11 @@ jobs:
           image_name: "bree"
           image_tag: latest
 
-      - name: Setup cloudctl
-        uses: evryfs/cloudctl-action@master
+      - name: Instal IBM Cloud CLI
+        uses: IBM/actions-ibmcloud-cli@0.0.8
         with:
-         apiEndpoint: 'https://your.cluster.endpoint:8443'
-         namespace: 'your-namespace'
-         username: 'someUser'
-         password: 'somePassword'
-         installKubectl: 'true' # default true, install kubectl from ICP
+         APIKEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+         CLOUD_REGION: ${{ secrets.IBM_CLOUD_REGION}} 
 
       - name: Log in to IBM Cloud
         run: |
