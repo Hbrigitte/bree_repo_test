@@ -51,8 +51,8 @@ jobs:
          ibmcloud login --apikey ${{ secrets.IBM_CLOUD_API_KEY }} --no-region
          ibmcloud target -g ${{ secrets.IBM_CLOUD_RESOURCE }} 
 
-      - name: Set up IBM Cloud Kubernetes
-        uses: IBM/github-actions/setup-ibm-cloud-kubernetes@v1
+      #- name: Set up IBM Cloud Kubernetes
+        #uses: IBM/github-actions/setup-ibm-cloud-kubernetes@v1
 
       - name: Retrieve Docker Hub image
         run: docker pull bree:latest
