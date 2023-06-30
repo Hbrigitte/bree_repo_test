@@ -45,6 +45,7 @@ jobs:
         with:
          APIKEY: ${{ secrets.IBM_CLOUD_API_KEY }}
          CLOUD_REGION: ${{ secrets.IBM_CLOUD_REGION}} 
+         run: ibmcloud target -g ${{ secrets.IBM_CLOUD_RESOURCE }}
 
       - name: Log in to IBM Cloud
         run: |
