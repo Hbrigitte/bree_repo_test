@@ -59,12 +59,12 @@ jobs:
 
       - name: Build and push Docker image to IBM Cloud Container Registry
         run: |
-        docker build -t your-ibm-registry-image:tag .
-        docker login -u ${{ secrets.IBM_CLOUD_CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.IBM_CLOUD_CONTAINER_REGISTRY_API_KEY }} mycluster.icr.io
-        docker tag your-ibm-registry-image:tag mycluster.icr.io/your-namespace/your-ibm-registry-image:tag
-        docker push mycluster.icr.io/your-namespace/your-ibm-registry-image:tag
+         docker build -t your-ibm-registry-image:tag .
+         docker login -u ${{ secrets.IBM_CLOUD_CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.IBM_CLOUD_CONTAINER_REGISTRY_API_KEY }} mycluster.icr.io
+         docker tag your-ibm-registry-image:tag mycluster.icr.io/your-namespace/your-ibm-registry-image:tag
+         docker push mycluster.icr.io/your-namespace/your-ibm-registry-image:tag
 
-    - name: Deploy to Kubernetes
-      run: |
-        kubectl apply -f deployment.yaml
-        kubectl apply -f service.yaml
+      - name: Deploy to Kubernetes
+        run: |
+         kubectl apply -f deployment.yaml
+         kubectl apply -f service.yaml
