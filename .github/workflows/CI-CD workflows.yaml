@@ -39,16 +39,13 @@ jobs:
         with:
           image_name: "bree"
           image_tag: latest
-
-      
+          
 
       - name: Instal IBM Cloud CLI
-        uses: dprosper/ic-setup-cli@v0.1.2
+        uses: IBM/actions-ibmcloud-cli@0.0.8
         with:
-          API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
-          INSTALL_PLUGINS: code-engine,container-service
-          REGION: eu-de
-          RESOURCE_GROUP: Default
+         APIKEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+         CLOUD_REGION: ${{ secrets.IBM_CLOUD_REGION}} 
 
       - name: Log in to IBM Cloud
         run: |
