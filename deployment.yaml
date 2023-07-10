@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python
+  labels:
+    app: python
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: python
+  template:
+    metadata:
+      labels:
+       app: python
+    spec:
+      volumes:
+        - name: mysql-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+      containers:
+      - image: mysql:latest
+        name: mysql
+        envFrom: 
+          - secretRef:
+              name: mysqlsecret
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql

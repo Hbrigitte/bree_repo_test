@@ -53,7 +53,7 @@ jobs:
          ibmcloud target -g default
 
       #- name: Set up IBM Cloud Kubernetes
-        #uses: IBM/github-actions/setup-ibm-cloud-kubernetes@v1
+      #uses: IBM/github-actions/setup-ibm-cloud-kubernetes@v1
 
       - name: Retrieve Docker Hub image
         run: docker pull bree:latest
